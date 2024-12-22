@@ -140,34 +140,62 @@ with open('launch_logs.txt', 'r', encoding='UTF-8') as data_file:
 # Построение графиков
 time_math = np.linspace(0, time_data[-1], len(time_data))
 time_KSP = np.linspace(0, time_logger[-1], len(time_logger))
-fig, axs = plt.subplots(3, 1, figsize=(5, 24))
+fig, axs = plt.subplots(3, 2, figsize=(5, 24))
 
-# Масса от времени
-axs[0].plot(time_math, mass_data, color="blue", label="Мат. модель", linewidth=2)
-axs[0].plot(time_KSP, mass_logger, "--", color="green", label=f"KSP", linewidth=2)
-axs[0].set_title("График массы (кг)")
-axs[0].set_xlabel("Время (с)")
-axs[0].set_ylabel("Масса (кг)")
-axs[0].grid()
-axs[0].legend()
 
-# Скорость от времени
-axs[1].plot(time_math, speed_data, color="red", label="Мат. модель", linewidth=2)
-axs[1].plot(time_KSP, speed_logger, "--", color="orange", label="KSP", linewidth=2)
-axs[1].set_title("График скорости (м/c)") 
-axs[1].set_xlabel("Время (с)")
-axs[1].set_ylabel("Скорость (м/c)")
-axs[1].grid()
-axs[1].legend()
+# Масса от времени (Мат. модель)
+axs[0][0].plot(time_math, mass_data, color="blue", label="Мат. модель", linewidth=2)
+axs[0][0].set_title("График массы (кг)")
+axs[0][0].set_xlabel("Время (с)")
+axs[0][0].set_ylabel("Масса (кг)")
+axs[0][0].grid()
+axs[0][0].legend()
 
-# Высота от времени
-axs[2].plot(time_math, altitude_data, color="pink", label="Мат. модель", linewidth=2)
-axs[2].plot(time_KSP, altitude_logger, "--", color="purple", label="KSP", linewidth=2)
-axs[2].set_title("График высоты (м)")
-axs[2].set_xlabel("Время (с)")
-axs[2].set_ylabel("Высота (м)")
-axs[2].grid()
-axs[2].legend()
+
+# Скорость от времени (Мат. модель)
+axs[1][0].plot(time_math, speed_data, color="red", label="Мат. модель", linewidth=2)
+axs[1][0].set_title("График скорости (м/c)") 
+axs[1][0].set_xlabel("Время (с)")
+axs[1][0].set_ylabel("Скорость (м/c)")
+axs[1][0].grid()
+axs[1][0].legend()
+
+# Высота от времени (Мат. модель)
+axs[2][0].plot(time_math, altitude_data, color="pink", label="Мат. модель", linewidth=2)
+axs[2][0].set_title("График высоты (м)")
+axs[2][0].set_xlabel("Время (с)")
+axs[2][0].set_ylabel("Высота (м)")
+axs[2][0].grid()
+axs[2][0].legend()
+
+
+# Масса от времени (KSP + Мат. модель)
+axs[0][1].plot(time_math, mass_data, color="blue", label="Мат. модель", linewidth=2)
+axs[0][1].plot(time_KSP, mass_logger, "--", color="green", label=f"KSP", linewidth=2)
+axs[0][1].set_title("График массы (кг)")
+axs[0][1].set_xlabel("Время (с)")
+axs[0][1].set_ylabel("Масса (кг)")
+axs[0][1].grid()
+axs[0][1].legend()
+
+# Скорость от времени (KSP + Мат. модель)
+axs[1][1].plot(time_math, speed_data, color="red", label="Мат. модель", linewidth=2)
+axs[1][1].plot(time_KSP, speed_logger, "--", color="orange", label="KSP", linewidth=2)
+axs[1][1].set_title("График скорости (м/c)") 
+axs[1][1].set_xlabel("Время (с)")
+axs[1][1].set_ylabel("Скорость (м/c)")
+axs[1][1].grid()
+axs[1][1].legend()
+
+# Высота от времени (KSP + Мат. модель)
+axs[2][1].plot(time_math, altitude_data, color="pink", label="Мат. модель", linewidth=2)
+axs[2][1].plot(time_KSP, altitude_logger, "--", color="purple", label="KSP", linewidth=2)
+axs[2][1].set_title("График высоты (м)")
+axs[2][1].set_xlabel("Время (с)")
+axs[2][1].set_ylabel("Высота (м)")
+axs[2][1].grid()
+axs[2][1].legend()
+
 
 
 plt.tight_layout()
